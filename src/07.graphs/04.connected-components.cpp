@@ -44,4 +44,27 @@ void dfs_scc(int cur, int p = -1) {
 for (auto &u: topsort)
     if (!used[u])
         dfs_scc(u);
+vector<long long int>v_scc;
+    v_scc.assign(2 * n, -1);
 
+    for (int i = 0; i < scc.size(); i++)
+        for (auto& u : scc[i])
+            v_scc[u] = i;
+
+    vector<long long int> values(2 * n, -1);
+
+    for (int i = 0; i < 2 * n; i += 2)
+        if (v_scc[i] == v_scc[i ^ 1]) {
+            cout << "NO\n";
+            return 0;
+        }
+        else {
+            if (v_scc[i] < v_scc[i ^ 1]) {
+                values[i] = 0;
+                values[i ^ 1] = 1;
+            }
+            else {
+                values[i] = 1;
+                values[i ^ 1] = 0;
+            }
+        }
