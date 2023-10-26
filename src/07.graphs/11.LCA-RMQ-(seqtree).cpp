@@ -1,6 +1,6 @@
 // Theme: Lowest Common Ancestor
 
-// Algorithm: RMQ (seqtreeА)
+// Algorithm: RMQ (seqtree)
 // Complextiry: Preprocessing O(N) and request O(log(N))
 
 typedef vector<vector<int>> graph;
