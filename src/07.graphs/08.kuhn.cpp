@@ -22,3 +22,17 @@ bool kuhn(int u) {
 
     return false;
 }
+
+int main() {
+	... чтение графа ...
+ 
+	mt.assign (k, -1);
+	for (int v=0; v<n; ++v) {
+		used.assign (n, false);
+		try_kuhn (v);
+	}
+ 
+	for (int i=0; i<k; ++i)
+		if (mt[i] != -1)
+			printf ("%d %d\n", mt[i]+1, i+1);
+}
