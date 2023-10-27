@@ -27,3 +27,9 @@ auto pascal(int n) {
 
     return C;
 }
+
+// Algorithm: Pascal Triangle Preprocessing
+// Complexity: O(N + log(p))
+ll nCk(ll n, ll k, ll p){
+    return ((fact[n] * inv(fact[k], p) % p) * inv(fact[n-k], p)) % p;
+}
