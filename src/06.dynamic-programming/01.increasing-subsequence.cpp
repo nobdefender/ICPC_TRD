@@ -1,32 +1,29 @@
 // Theme: Longest Increasing Subsequence
 
-// Algorithm: Binary Search Algorithm
+// Algorithm: LIS via binary search
 // Complexity: O(N*log(N))
 
-auto inc_subseq(const vector<int> &a) {
-    int n = a.size();
-    vector<int> dp(n + 1, INF), pos(n + 1), prev(n), subseq;
-
-    int len = 0;
-    dp[0] = -INF;
-    pos[0] = -1;
-
-    for (int i = 0; i < n; i++) {
-        int j = distance(dp.begin(), upper_bound(all(dp), a[i]));
-        if (dp[j - 1] < a[i] && a[i] < dp[j]) {
-            dp[j] = a[i];
+vector<int> lis(vector<int>& arr) {
+    int n = arr.size();
+    vector<int> dp(n + 1, INF); dp[0] = -INF;
+    vector<int> pos(n + 1, -1), previous(n, -1);
+    int length = 0;
+    for (int i = 0; i < n; ++i) {
+        int j = lower_bound(dp.begin(), dp.end(), arr[i]) - dp.begin();
+        if (dp[j - 1] < arr[i] && arr[i] < dp[j]) {
+            dp[j] = arr[i];
             pos[j] = i;
-            prev[i] = pos[j - 1];
-            len = max(len, j);
+            previous[i] = pos[j - 1];
+            length = max(length, j);
         }
     }
 
-    int p = pos[len];
+    vector<int> res;
+    int p = pos[length];
     while (p != -1) {
-        subseq.push_back(a[p]);
-        p = prev[p];
+        res.push_back(arr[p]);
+        p = previous[p];
     }
-    reverse(subseq.begin(), subseq.end());
-
-    return subseq;
+    reverse(res.begin(), res.end());
+    return res;
 }
