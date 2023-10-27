@@ -1,8 +1,4 @@
-#include <bits/stdc++.h>
-
 using namespace std;
-
-
 
 // DEFINES
 #define precision(x) cout << fixed << setprecision(x);
@@ -17,8 +13,6 @@ using namespace std;
 #define yes "Yes"
 #define no "No"
 #define int long long
-
-
 
 // CONSTANTS
 const int INF = 1e18;
@@ -64,23 +58,6 @@ struct custom_hash {
 // gp_hash_table<long long, int, custom_hash> safe_hash_table;
 //
 // for pairs might be used like `3 * a + b` or `a ^ (b >> 1)`
-
-
-// GLOBALS
-
-
-
-// SOLUTION
-void solve() {
-    
-}
-
-
-
-// PREPROCESSING
-void prepr() { }
-
-
 
 // ENTRANCE
 signed main() {
