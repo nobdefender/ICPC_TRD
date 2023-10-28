@@ -1,5 +1,13 @@
 // Theme: Maximum Flow
 
+struct edge {
+    int to, limit, flow;
+    edge(int to, int limit, int flow) : to(to), limit(limit), flow(flow) { }
+    int res() {
+        return limit - flow;
+    }
+};
+
 int s, t, sz;
 
 vector<edge> edges;
