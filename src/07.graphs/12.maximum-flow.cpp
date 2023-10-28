@@ -8,6 +8,13 @@ struct edge {
     }
 };
 
+void add_edge(int u, int v, int limit, int flow) {
+    fgraph[u].push_back(edges.size());
+    edges.push_back({ v, limit, flow });
+    fgraph[v].push_back(edges.size());
+    edges.push_back({ u, 0, 0 });
+}
+
 int s, t, sz;
 
 vector<edge> edges;
