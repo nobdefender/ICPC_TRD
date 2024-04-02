@@ -29,7 +29,7 @@ void dijkstra(int u) {
             if (d[v] + w < d[to]) {
                 d[to] = d[v] + w;
                 p[to] = v;
-                q.push({ -d[to], -to });
+                q.push({ -d[to], to });
             }
         }
     }
