@@ -30,8 +30,7 @@ ofstream out("output.txt");
 // RANDOM
 const int RMIN = 1, RMAX = 1e9;
 
-random_device rdev;
-mt19937_64 reng(rdev());
+mt19937_64 reng(chrono::steady_clock::now().time_since_epoch().count());
 uniform_int_distribution<mt19937_64::result_type> dist(RMIN, RMAX);
 
 
