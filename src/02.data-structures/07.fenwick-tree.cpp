@@ -32,16 +32,16 @@ struct Fenwick {
         }
     }
 
-    // CONCEPT (didn't test it). Should work if all real values are non-negative.
+    // Works if all values are non-negative.
     int lower_bound(int s) {
         int k = 0;
-        int logn = (int)(log2(data.size() - 1) + 1); // maybe rewrite this line
+        int logn = (int)(log2(data.size() - 1) + 1); // rewrite this line?
         for (int b = logn; b >= 0; --b) {
             if (k + (1 << b) < data.size() && data[k + (1 << b)] < s) {
                 k += (1 << b);
                 s -= data[k];
             }
         }
-        return k;
+        return k + 1;
     }
 };
