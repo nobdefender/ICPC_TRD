@@ -1,45 +1,39 @@
 // Theme: Methematical 3-D Vector
 
-template <typename T>
-struct vec {
-    T x, y, z;
-    vec(T x = 0, T y = 0, T z = 0) : x(x), y(y), z(z) { }
-    vec<T> operator+(const vec<T> &v) const {
-        return vec<T>(x + v.x, y + v.y, z + v.z);
+template<typename T>
+struct Point {
+    T x, y;
+    Point(T x = 0, T y = 0): x(x), y(y) {}
+    Point operator+(const Point& other) const {
+        return {x + other.x, y + other.y};
     }
-    vec<T>operator-(const vec<T> &v) const {
-        return vec<T>(x - v.x, y - v.y, z - v.z);
+    Point operator-(const Point& other) const {
+        return {x - other.x, y - other.y};
     }
-    vec<T>operator*(T k) const {
-        return vec<T>(k * x, k * y, k * z);
+    T operator*(const Point& other) const {
+        return x * other.x + y * other.y;
     }
-    friend vec<T> operator*(T k, const vec<T> &v) {
-        return vec<T>(v.x * k, v.y * k, v.z * k);
+    T operator/(const Point& other) const {
+        return x * other.y - y * other.x;
     }
-    vec<T> operator/(T k) {
-        return vec<T>(x / k, y / k, z / k);
+    bool operator==(const Point& other) const {
+        return x == other.x && y == other.y;
     }
-    T operator*(const vec<T> &v) const {
-        return x * v.x + y * v.y + z * v.z;
+    T size2() const {
+        return x * x + y * y;
     }
-    vec<T> operator^(const vec<T> &v) const {
-        return { y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x };
+    T size() const {
+        return sqrt(size2());
     }
-    auto operator<=>(const vec<T> &v) const = default;
-    bool operator==(const vec<T> &v) const = default;
-    T norm() const {
-        return x * x + y * y + z * z;
+    T polar() const {
+        return atan2(y, x);
     }
-    double abs() const {
-        return sqrt(norm());
+    friend istream& operator>>(istream& in, Point& P) {
+        in >> P.x >> P.y;
+        return in;
     }
-    double cos(const vec<T> &v) const {
-        return ((*this) * v) / (abs() * v.abs());
-    }
-    friend ostream &operator<<(ostream &out, const vec<T> &v) {
-        return out << v.x << sp << v.y << sp << v.z;
-    }
-    friend istream &operator>>(istream &in, vec<T> &v) {
-        return in >> v.x >> v.y >> v.z;
+    friend ostream& operator<<(ostream& out, const Point& P) {
+        out << P.x << " " << P.y;
+        return out;
     }
 };
