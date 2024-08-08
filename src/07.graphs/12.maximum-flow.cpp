@@ -224,7 +224,6 @@ int bfs_spfa(int u, int flow = INF) {
 
         if (v == t) {
             pushed = f;
-            break;
         }
 
         for (auto &ind : fgraph[v]) {
