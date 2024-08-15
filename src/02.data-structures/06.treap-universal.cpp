@@ -80,6 +80,10 @@ Node* insert(Node* root, int v) {
 
 // debug helper
 void print_node(Node* root, bool end = true) {
+    if (root == nullptr) {
+        if (end) cout << "\n";
+        return;
+    }
     print_node(root->left, false);
     cout << root->x << ", ";
     print_node(root->right, false);
