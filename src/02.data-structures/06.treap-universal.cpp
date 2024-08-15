@@ -79,9 +79,9 @@ Node* insert(Node* root, int v) {
 }
 
 // debug helper
-void print_node(Node* root, bool end = false) {
-    if (root->left != nullptr) print_node(root->left);
-    cout << root->x << " ";
-    if (root->right != nullptr) print_node(root->right);
+void print_node(Node* root, bool end = true) {
+    print_node(root->left, false);
+    cout << root->x << ", ";
+    print_node(root->right, false);
     if (end) cout << "\n";
 }
